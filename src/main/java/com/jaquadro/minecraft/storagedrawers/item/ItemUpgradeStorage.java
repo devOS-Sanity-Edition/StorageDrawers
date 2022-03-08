@@ -4,8 +4,8 @@ import com.jaquadro.minecraft.storagedrawers.config.CommonConfig;
 import net.minecraft.world.item.Item;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 public class ItemUpgradeStorage extends ItemUpgrade
 {
@@ -28,7 +28,7 @@ public class ItemUpgradeStorage extends ItemUpgrade
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public Component getDescription() {
         int mult = CommonConfig.UPGRADES.getLevelMult(level.getLevel());
         return new TranslatableComponent("item.storagedrawers.storage_upgrade.desc", mult);

@@ -22,8 +22,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraftforge.client.model.ModelDataManager;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.ModelDataMap;
@@ -553,7 +553,7 @@ public abstract class TileEntityDrawers extends ChamTileEntity implements IDrawe
         MessageHandler.INSTANCE.send(PacketDistributor.NEAR.with(() -> point), new CountUpdateMessage(getBlockPos(), slot, count));
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void clientUpdateCount (final int slot, final int count) {
         if (!getLevel().isClientSide)
             return;
@@ -561,7 +561,7 @@ public abstract class TileEntityDrawers extends ChamTileEntity implements IDrawe
         Minecraft.getInstance().tell(() -> TileEntityDrawers.this.clientUpdateCountAsync(slot, count));
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     private void clientUpdateCountAsync (int slot, int count) {
         IDrawer drawer = getDrawer(slot);
         if (drawer.isEnabled() && drawer.getStoredItemCount() != count)
@@ -648,7 +648,7 @@ public abstract class TileEntityDrawers extends ChamTileEntity implements IDrawe
     }
 
     private void refreshModelData () {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+        DistExecutor.runWhenOn(EnvType.CLIENT, () -> () -> {
             ModelDataManager.requestModelDataRefresh(this);
             Minecraft.getInstance().levelRenderer.setBlocksDirty(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), worldPosition.getX(), worldPosition.getY(), worldPosition.getZ());
         });

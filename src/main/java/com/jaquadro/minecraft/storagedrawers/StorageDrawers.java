@@ -13,7 +13,7 @@ import com.jaquadro.minecraft.storagedrawers.network.MessageHandler;
 
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
-import net.minecraftforge.api.distmarker.Dist;
+import net.fabricmc.api.EnvType;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -72,7 +72,7 @@ public class StorageDrawers
     private void setup (final FMLCommonSetupEvent event) {
         MessageHandler.init();
 
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> ModContainers.registerScreens());
+        DistExecutor.runWhenOn(EnvType.CLIENT, () -> () -> ModContainers.registerScreens());
 
         compRegistry = new CompTierRegistry();
         compRegistry.initialize();

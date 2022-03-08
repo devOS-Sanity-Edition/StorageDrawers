@@ -39,8 +39,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -154,10 +154,10 @@ public abstract class BlockDrawers extends HorizontalDirectionalBlock implements
         return storageUnits;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void initDynamic () { }
 
-    /*@OnlyIn(Dist.CLIENT)
+    /*@Environment(EnvType.CLIENT)
     public StatusModelData getStatusInfo (BlockState state) {
         return null;
     }*/

@@ -9,8 +9,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -63,10 +63,10 @@ public class CountUpdateMessage
     }
 
     public static void handle(CountUpdateMessage msg, Supplier<NetworkEvent.Context> ctx) {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> handleClient(msg, ctx.get()));
+        DistExecutor.runWhenOn(EnvType.CLIENT, () -> () -> handleClient(msg, ctx.get()));
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     private static void handleClient(CountUpdateMessage msg, NetworkEvent.Context ctx) {
         if (!msg.failed) {
             Level world = Minecraft.getInstance().level;

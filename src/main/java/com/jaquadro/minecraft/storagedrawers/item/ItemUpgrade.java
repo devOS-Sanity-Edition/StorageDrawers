@@ -8,8 +8,8 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -42,12 +42,12 @@ public class ItemUpgrade extends Item
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void appendHoverText (@Nonnull ItemStack itemStack, @Nullable Level world, List<Component> list, TooltipFlag advanced) {
         list.add(new TextComponent("").append(getDescription()).withStyle(ChatFormatting.GRAY));
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public Component getDescription() {
         return new TranslatableComponent(this.getDescriptionId() + ".desc");
     }

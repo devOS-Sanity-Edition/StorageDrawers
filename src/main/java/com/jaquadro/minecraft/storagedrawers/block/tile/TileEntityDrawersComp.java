@@ -17,8 +17,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
@@ -169,7 +169,7 @@ public class TileEntityDrawersComp extends TileEntityDrawers
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void clientUpdateCount (final int slot, final int count) {
         if (!getLevel().isClientSide)
             return;
@@ -177,7 +177,7 @@ public class TileEntityDrawersComp extends TileEntityDrawers
         Minecraft.getInstance().tell(() -> TileEntityDrawersComp.this.clientUpdateCountAsync(count));
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     private void clientUpdateCountAsync (int count) {
         if (getGroup() instanceof FractionalDrawerGroup) {
             ((FractionalDrawerGroup)getGroup()).setPooledCount(count);

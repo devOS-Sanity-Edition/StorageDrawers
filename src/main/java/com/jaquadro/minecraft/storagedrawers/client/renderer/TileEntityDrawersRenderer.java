@@ -37,13 +37,13 @@ import com.mojang.math.Matrix3f;
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nonnull;
 import java.util.function.Consumer;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntityDrawers>
 {
     private boolean[] renderAsBlock = new boolean[4];

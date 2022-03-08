@@ -23,8 +23,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -416,7 +416,7 @@ public class ModBlocks
         }*/
 
         @SubscribeEvent
-        @OnlyIn(Dist.CLIENT)
+        @Environment(EnvType.CLIENT)
         public static void onRegisterRenderers (final EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(Tile.STANDARD_DRAWERS_1, TileEntityDrawersRenderer::new);
             event.registerBlockEntityRenderer(Tile.STANDARD_DRAWERS_2, TileEntityDrawersRenderer::new);
@@ -424,7 +424,7 @@ public class ModBlocks
             event.registerBlockEntityRenderer(Tile.FRACTIONAL_DRAWERS_3, TileEntityDrawersRenderer::new);
         }
 
-        @OnlyIn(Dist.CLIENT)
+        @Environment(EnvType.CLIENT)
         public static void bindRenderTypes () {
             for (Block block : blockList) {
                 if (block instanceof BlockDrawers)
